@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>LETTER FOR AIHA</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="letter">
+    <meta name="description" content="A letter  made by ihsan">
+
+    <!-- Font Awesome and other assets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.2/markdown-it.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: bisque;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+        }
+
+        #message-container {
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.455);
+            transition: height 1.5s ease-in-out;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="flex justify-center items-center flex-col w-[100vw] h-[100vh]">
+        <div id="message-container" class="flex-col items-center hidden h-0 overflow-y-hidden max-h-[80vh] max-w-[50vw] max-md:max-w-[70vw] max-sm:max-w-[80vw] max-sm:max-h-[80vh] py-5">
+            <div class="w-[90%] mb-auto mt-auto">
+                <article id="message" class="prose"></article>
+            </div>
+        </div>
+
+        <div class="letter-container mt-2">
+            <i id="letter-icon" class="fa-solid fa-envelope fa-beat fa-2x" style="color: #ff0000;"></i>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let tempdata = {
+                "did_open": false
+            };
+
+            const letterIcon = document.querySelector("#letter-icon");
+            const msg_container = document.querySelector("#message-container");
+
+            // Hardcoded message content (replacing message.txt)
+            const messageContent = `
+
+<h1><strong>Dear One Aiha,</strong></h1>
+<p>Today is a special day because it's the day you came into this world, and I am endlessly grateful for that.<br>
+Kyou wa tokubetsu na hi desu. Anata ga kono sekai ni umareta hi, totemo kansha shiteimasu.</p>
+
+<p>You are the most incredible person I’ve ever known. Every day, I find myself admiring your kindness, your strength, and your beautiful heart.<br>
+Anata wa watashi ga ima made deatta naka de, mottomo sugoi hito desu. Mainichi, watashi wa anata no yasashisa, tsuyosa, soshite utsukushii kokoro o sanshimasu.</p>
+
+<p>You always seem to know how to make those around you feel loved and appreciated, and I am in awe of the way you light up any room just by being yourself.<br>
+Anata wa itsumo mawari no hito ni, aijou to kansha o kanjisaseru houhou o shitte iru you de, watashi wa anata ga jibun jishin de iru dake de heya o akaruku suru yousu ni kyouchou o uke masu.</p>
+
+<p>What I love most is how genuine and caring you are.<br>
+Watashi ga mottomo aishiteru no wa, anata no sunao de yasashii tokoro desu.</p>
+
+<p>You give without expecting anything in return, and your love is pure and unconditional.<br>
+Anata wa nani mo motomenai de ataeru hito, sono ai wa junjou de mujyouken.</p>
+
+<p>You are my inspiration, my joy, and my greatest love.<br>
+Anata wa watashi no insupireeshon, watashi no yorokobi, soshite watashi no saikou no ai desu.</p>
+
+<p>I am so lucky to meet you in my life, and I promise to always cherish you, just as you are.<br>
+Anata ni deaeta koto wa watashi no unmei desu. Watashi wa zutto, sono mama no anata o taisetsu ni shimasu to chikau.</p>
+
+<p>On this special day, I want you to know that my care for you only grows stronger with every moment we share.<br>
+Kono tokubetsu na hi ni, watashi ga anata o omou kimochi wa, issho ni sugoshita shunkan go to ni tsuyoku natte iru koto o tsutaetai.</p>
+
+<p>Happy birthday, Aiha.<br>
+Otanjoubi omedetou, Aiha.</p>
+
+<p>Here’s to many more years of happiness, laughter, and endless story.<br>
+Korekara mo, takusan no shiawase to waraigoe, soshite owarinaki monogatari ga aru koto o inotteimasu.</p>
+
+<p><strong>With all my heart,</strong><br> Ihsan<br><strong>Kokoro kara,</strong><br> Ihsan</p>
+
+
+
+
+
+
+            `;
+             //<p><a href="heart.html">Click Me ❤</a></p>
+
+            // Insert the hardcoded message content as innerHTML
+            document.querySelector("#message").innerHTML = messageContent;
+
+            letterIcon.addEventListener("click", function() {
+                if (tempdata.did_open) {
+                    return;
+                }
+                tempdata.did_open = true;
+
+                msg_container.classList.remove("hidden");
+                msg_container.classList.add("flex");
+
+                let auto_css_height = msg_container.scrollHeight + 20; // 20 extra padding
+                msg_container.style.height = `${auto_css_height}px`; // set inline height style
+
+                setTimeout(() => {
+                    adjustOverflow();
+                    window.addEventListener("resize", adjustOverflow); // Adjust on window resize
+                }, 1450);
+            });
+
+            function adjustOverflow() {
+                if (msg_container.scrollHeight > msg_container.clientHeight) {
+                    msg_container.classList.remove("overflow-y-hidden");
+                    msg_container.classList.add("overflow-y-scroll");
+                } else {
+                    msg_container.classList.remove("overflow-y-scroll");
+                    msg_container.classList.add("overflow-y-hidden");
+                }
+
+                let auto_css_height = msg_container.scrollHeight + 20;
+                msg_container.style.height = `${auto_css_height}px`; // dynamically set height
+            }
+        });
+
+    </script>
+</body>
+
+</html>
